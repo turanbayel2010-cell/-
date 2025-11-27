@@ -1,0 +1,82 @@
+import random
+
+def guess_number():
+    number_to_guess = random.randint(1, 100)
+    attempts = 0
+    print("Угадайте число от 1 до 100")
+
+    while True:
+        guess = int(input("Введите ваше число: "))
+        attempts += 1
+        if guess < number_to_guess:
+            print("Слишком маленькое число, попробуйте снова.")
+        elif guess > number_to_guess:
+            print("Слишком большое число, попробуйте снова.")
+        else:
+            print(f"Поздравляю! Вы угадали число {number_to_guess} за {attempts} попыток.")
+            break
+
+def calculator():
+    print("Калькулятор")
+    num1 = float(input("Введите первое число: "))
+    operator = input("Введите оператор (+, -, *, /): ")
+    num2 = float(input("Введите второе число: "))
+
+    if operator == '+':
+        print(f"Результат: {num1 + num2}")
+    elif operator == '-':
+        print(f"Результат: {num1 - num2}")
+    elif operator == '*':
+        print(f"Результат: {num1 * num2}")
+    elif operator == '/':
+        if num2 != 0:
+            print(f"Результат: {num1 / num2}")
+        else:
+            print("Ошибка: нельзя делить на ноль.")
+    else:
+        print("Недопустимый оператор.")
+
+def rock_paper_scissors():
+    options = ["камень", "ножницы", "бумага"]
+    computer_choice = random.choice(options)
+    user_choice = input("Выберите (камень, ножницы, бумага): ").lower()
+
+    if user_choice not in options:
+        print("Недопустимый выбор!")
+        return
+
+    print(f"Компьютер выбрал: {computer_choice}")
+
+    if user_choice == computer_choice:
+        print("Ничья!")
+    elif (user_choice == "камень" and computer_choice == "ножницы") or \
+         (user_choice == "ножницы" and computer_choice == "бумага") or \
+         (user_choice == "бумага" and computer_choice == "камень"):
+        print("Вы выиграли!")
+    else:
+        print("Вы проиграли!")
+
+def main_menu():
+    while True:
+        print("\n--- Главное меню ---")
+        print("1. Угадай число")
+        print("2. Калькулятор")
+        print("3. Камень-ножницы-бумага")
+        print("4. Выход")
+
+        choice = input("Выберите игру (1-4): ")
+
+        if choice == '1':
+            guess_number()
+        elif choice == '2':
+            calculator()
+        elif choice == '3':
+            rock_paper_scissors()
+        elif choice == '4':
+            print("Спасибо за игру! До свидания!")
+            break
+        else:
+            print("Недопустимый выбор. Попробуйте еще раз.")
+
+if __name__ == "__main__":
+    main_menu()
